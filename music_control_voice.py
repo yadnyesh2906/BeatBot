@@ -8,7 +8,7 @@ app = Flask(__name__)
 # Spotify API credentials
 CLIENT_ID = "0120848b9fe94d6f85530aa7f2797a9e"
 CLIENT_SECRET = "9fba8f5706e24f6c889217f3f042ff28"
-REDIRECT_URI = "https://audius-1.onrender.com"
+REDIRECT_URI = "https://audius.onrender.com"
 SCOPE = "user-modify-playback-state user-read-playback-state user-read-currently-playing"
 
 # Initialize Spotify client
