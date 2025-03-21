@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Music Control System</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <h1>Music Control System 🎵</h1>
+    <div class="container">
+        <h1>Spotify Music Control System</h1>
 
-    <button onclick="sendCommand('play')">▶️ Play</button>
-    <button onclick="sendCommand('pause')">⏸️ Pause</button>
-    <button onclick="sendCommand('next')">⏭️ Next</button>
-    <button onclick="sendCommand('previous')">⏮️ Previous</button>
+        <div class="controls">
+            <input type="text" id="search-bar" placeholder="Search for a song...">
+            <button id="search-btn" onclick="searchSong()">Search</button>
 
-    <input id="song" type="text" placeholder="Search a song">
-    <button onclick="searchSong()">🔍 Search</button>
+            <button onclick="control('play')">Play</button>
+            <button onclick="control('pause')">Pause</button>
+            <button onclick="control('next')">Next</button>
+            <button onclick="control('previous')">Previous</button>
 
-    <button onclick="startVoice()">🎙️ Voice Control</button>
+            <button id="voice-btn" onclick="startVoiceControl()">🎤 Voice Control</button>
+        </div>
+
+        <div id="results"></div>
+    </div>
 
     <script src="/static/script.js"></script>
 </body>

@@ -1,20 +1,32 @@
 from flask import Flask, render_template, request, jsonify
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
+import speech_recognition as sr
 
 app = Flask(__name__)
 
-# Spotify API Credentials
+# Spotify API credentials
 CLIENT_ID = "0120848b9fe94d6f85530aa7f2797a9e"
 CLIENT_SECRET = "9fba8f5706e24f6c889217f3f042ff28"
-REDIRECT_URI = "https://audius.onrender.com"
+REDIRECT_URI = "http://localhost:5000/callback"
 SCOPE = "user-modify-playback-state user-read-playback-state user-read-currently-playing"
 
-# Initialize Spotify Client
-sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=CLIENT_ID,
-                                               client_secret=CLIENT_SECRET,
-                                               redirect_uri=REDIRECT_URI,
-                                               scope=SCOPE))
+# Initialize Spotify client
+sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
+    client_id=CLIENT_ID,
+    client_secret=CLIENT_SECRET,
+    redirect_uri=REDIRECT_URI,
+    scope=SCOPE
+))
+
+# Voice commands mapping
+COMMANDS = {
+    "play": "play",
+    "pause": "pause",
+    "resume": "play",
+    "next": "next",
+    "previous": "previous"
+}
 
 @app.route("/")
 def index():
@@ -22,37 +34,65 @@ def index():
 
 @app.route("/control", methods=["POST"])
 def control():
-    data = request.get_json()
-    command = data.get("command")
+    command = request.json.get("command")
+    if not command:
+        return jsonify({"error": "No command provided"}), 400
 
     try:
         if command == "play":
             sp.start_playback()
         elif command == "pause":
             sp.pause_playback()
+        elif command == "resume":
+            sp.start_playback()
         elif command == "next":
             sp.next_track()
         elif command == "previous":
             sp.previous_track()
         else:
-            return jsonify({"error": "Invalid command"}), 400
+            return jsonify({"error": "Unknown command"}), 400
 
-        return jsonify({"status": f"{command} command executed"})
+        return jsonify({"status": "success", "command": command})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route("/voice", methods=["POST"])
+def voice():
+    recognizer = sr.Recognizer()
+    audio_file = request.files.get("audio")
+    if not audio_file:
+        return jsonify({"error": "No audio file provided"}), 400
+
+    try:
+        with sr.AudioFile(audio_file) as source:
+            audio_data = recognizer.record(source)
+        text = recognizer.recognize_google(audio_data).lower()
+        command = next((cmd for cmd in COMMANDS if cmd in text), None)
+        if command:
+            return control()
+        else:
+            return jsonify({"error": "No valid command recognized"}), 400
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 @app.route("/search", methods=["POST"])
 def search():
-    data = request.get_json()
-    query = data.get("query")
+    query = request.json.get("query")
+    if not query:
+        return jsonify({"error": "No search query provided"}), 400
 
     try:
-        results = sp.search(q=query, limit=1, type="track")
-        track_uri = results['tracks']['items'][0]['uri']
-        sp.start_playback(uris=[track_uri])
-        return jsonify({"status": f"Playing: {query}"})
+        results = sp.search(q=query, limit=5, type='track')
+        tracks = [
+            {
+                "name": track["name"],
+                "artist": track["artists"][0]["name"],
+                "uri": track["uri"]
+            } for track in results["tracks"]["items"]
+        ]
+        return jsonify({"tracks": tracks})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(debug=True)

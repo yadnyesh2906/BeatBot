@@ -1,26 +1,29 @@
-# Ignore Python cache and environment folders
+# Python-related files
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
-.Python
-.env
-.venv
+*.env
+*.venv
+*.idea/
 
-# Ignore IDE/editor files
+# Environment files
+.env
+*.env
+
+# Logs
+*.log
+logs/
+
+# Flask cache
+instance/
+
+# IDEs and Editors
 .vscode/
 *.swp
-
-# Ignore logs and temporary files
-*.log
-*.bak
-
-# Ignore environment variables
-.env
-
-# Ignore deployment files
-render.yaml
-
-# Ignore OS files (Windows/macOS/Linux)
 .DS_Store
-Thumbs.db
+
+# Packages and distributions
+*.egg-info/
+*.dist-info/
+venv/
