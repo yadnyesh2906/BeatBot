@@ -3,7 +3,7 @@ import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 import speech_recognition as sr
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='../templates')
 
 # Spotify API credentials
 CLIENT_ID = "0120848b9fe94d6f85530aa7f2797a9e"
