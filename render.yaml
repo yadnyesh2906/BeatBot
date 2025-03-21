@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: music-control-voice
+    env: python
+    region: oregon
+
+    buildCommand: |
+      unzip templates.zip
+      unzip static.zip
+      pip install -r requirements.txt
+
+    startCommand: python music_control_voice.py
+
+    envVars:
+      - key: 0120848b9fe94d6f85530aa7f2797a9e
+        sync: false
+      - key: 9fba8f5706e24f6c889217f3f042ff28
+        sync: false
+      - key: https://audius.onrender.com
+        sync: false
