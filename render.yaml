@@ -1,15 +1,10 @@
 services:
   - type: web
-    name: music-control-voice
+    name: flask-app
     env: python
     region: oregon
-
-    buildCommand: |
-      unzip templates.zip
-      unzip static.zip
-      pip install -r requirements.txt
-
-    startCommand: python music_control_voice.py
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn app:app"
 
     envVars:
       - key: 0120848b9fe94d6f85530aa7f2797a9e
