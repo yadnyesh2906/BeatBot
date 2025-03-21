@@ -3,12 +3,12 @@ import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 import speech_recognition as sr
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='../templates')
 
 # Spotify API credentials
 CLIENT_ID = "0120848b9fe94d6f85530aa7f2797a9e"
 CLIENT_SECRET = "9fba8f5706e24f6c889217f3f042ff28"
-REDIRECT_URI = "https://audius.onrender.com"
+REDIRECT_URI = "http://localhost:5000"
 SCOPE = "user-modify-playback-state user-read-playback-state user-read-currently-playing"
 
 # Initialize Spotify client
