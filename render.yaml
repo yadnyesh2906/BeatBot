@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: music-control
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python app.py"
+    envVars:
+      - key: CLIENT_ID
+        value: 0120848b9fe94d6f85530aa7f2797a9e
+      - key: CLIENT_SECRET
+        value: 9fba8f5706e24f6c889217f3f042ff28
+      - key: REDIRECT_URI
+        value: https://your-app.onrender.com/callback

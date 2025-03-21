@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Music Control System</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Music Control System 🎵</h1>
+
+    <button onclick="sendCommand('play')">▶️ Play</button>
+    <button onclick="sendCommand('pause')">⏸️ Pause</button>
+    <button onclick="sendCommand('next')">⏭️ Next</button>
+    <button onclick="sendCommand('previous')">⏮️ Previous</button>
+
+    <input id="song" type="text" placeholder="Search a song">
+    <button onclick="searchSong()">🔍 Search</button>
+
+    <button onclick="startVoice()">🎙️ Voice Control</button>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
