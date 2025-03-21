@@ -29,7 +29,7 @@ COMMANDS = {
 }
 
 @app.route("/")
-def index():
+def home():
     return render_template("index.html")
 
 @app.route("/control", methods=["POST"])
