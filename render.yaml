@@ -1,14 +1,20 @@
 services:
   - type: web
-    name: music-control
+    name: music-control-voice
     env: python
-    plan: free
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "music_control_voice.py"
+    region: oregon
+
+    buildCommand: |
+      unzip templates.zip
+      unzip static.zip
+      pip install -r requirements.txt
+
+    startCommand: python music_control_voice.py
+
     envVars:
-      - key: CLIENT_ID
-        value: 0120848b9fe94d6f85530aa7f2797a9e
-      - key: CLIENT_SECRET
-        value: 9fba8f5706e24f6c889217f3f042ff28
-      - key: REDIRECT_URI
-        value: https://audius-1.onrender.com
+      - key: 0120848b9fe94d6f85530aa7f2797a9e
+        sync: false
+      - key: 9fba8f5706e24f6c889217f3f042ff28
+        sync: false
+      - key: https://audius.onrender.com
+        sync: false
