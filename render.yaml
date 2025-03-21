@@ -16,5 +16,5 @@ services:
         sync: false
       - key: 9fba8f5706e24f6c889217f3f042ff28
         sync: false
-      - key: https://audius-1.onrender.com
+      - key: https://audius.onrender.com
         sync: false
