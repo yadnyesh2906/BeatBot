@@ -9,7 +9,7 @@ services:
       unzip static.zip
       pip install -r requirements.txt
 
-    startCommand: python music_control_voice.py
+    startCommand: python app.py
 
     envVars:
       - key: 0120848b9fe94d6f85530aa7f2797a9e
