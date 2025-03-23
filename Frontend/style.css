@@ -1,0 +1,73 @@
+/* Global Styling */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    font-family: 'Arial', sans-serif;
+    color: white;
+    text-align: center;
+}
+
+/* Main Container */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.6);
+    max-width: 600px;
+    width: 90%;
+}
+
+/* Heading */
+h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Music Control Buttons */
+button {
+    padding: 12px 24px;
+    margin: 10px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+/* Play Button */
+#play-btn {
+    background: #4CAF50;
+    color: white;
+}
+
+/* Pause Button */
+#pause-btn {
+    background: #FF5722;
+    color: white;
+}
+
+/* Next Button */
+#next-btn {
+    background: #3F51B5;
+    color: white;
+}
+
+/* Previous Button */
+#prev-btn {
+    background: #
+}
