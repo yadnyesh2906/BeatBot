@@ -77,3 +77,4 @@ voiceButton.addEventListener("click", () => {
 
     recognition.start();
 });
+
