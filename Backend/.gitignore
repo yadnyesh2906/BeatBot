@@ -1,0 +1,32 @@
+# Ignore Python virtual environment
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore environment variables and secrets
+.env
+*.env
+
+# Cache and log files
+*.log
+*.cache
+
+# Ignore IDE and editor settings
+.vscode/
+*.swp
+*.swo
+.idea/
+
+# Ignore compiled distributions
+dist/
+build/
+
+# Node.js-related (if needed later)
+node_modules/
+
+# System-specific files
+.DS_Store
+Thumbs.db

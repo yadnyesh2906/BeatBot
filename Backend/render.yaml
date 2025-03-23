@@ -1,0 +1,17 @@
+services:
+  - name: beatbot-backend
+    type: web
+    env: python
+    buildCommand: |
+      cd backend
+      pip install -r requirements.txt
+    startCommand: gunicorn app:app
+
+
+    envVars:
+      - key: 0120848b9fe94d6f85530aa7f2797a9e
+        sync: false
+      - key: 9fba8f5706e24f6c889217f3f042ff28
+        sync: false
+      - key: https://audius.onrender.com
+        sync: false
